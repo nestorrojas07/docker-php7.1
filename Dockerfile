@@ -34,7 +34,7 @@ RUN apt-get install -y \
 ADD config/fpm-php.ini /etc/php/7.1/fpm/php.ini
 ADD config/fpm.conf /etc/php/7.1/fpm/pool.d/www.conf
 
-ADD --chown=root:root ./entrypoint.sh /usr/local/bin
+ADD ./entrypoint.sh /usr/local/bin
 RUN chmod +x /usr/local/bin/entrypoint.sh
 
 RUN ln -s /usr/local/bin/entrypoint.sh /entrypoint.sh
