@@ -1,10 +1,12 @@
 # Pull base image.
-FROM ubuntu:17.10
+FROM debian:stretch-slim
 
 MAINTAINER Omar Davila <omar@zinobe.com>
 
 ENV PUID=33
 ENV PGID=33
+ENV XDEBUG_PORT=9000
+ENV XDEBUG_HOST=localhost
 
 ENV WORKDIR=/home/dws
 
@@ -12,11 +14,14 @@ WORKDIR $WORKDIR
 
 # Install Nginx y PHP 7.1.
 RUN apt-get update; \
-  apt-get install -y software-properties-common; \
-  apt-get install -y python-software-properties; \
-  add-apt-repository -y ppa:ondrej/php; \
-  apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 4F4EA0AAE5267A6C; \
-  apt-get update
+    apt-get install -y \
+        apt-transport-https lsb-release ca-certificates \
+        wget \
+        lsb-release
+
+RUN wget -O /etc/apt/trusted.gpg.d/php.gpg https://packages.sury.org/php/apt.gpg; \
+    echo "deb https://packages.sury.org/php/ $(lsb_release -sc) main" > /etc/apt/sources.list.d/php.list; \
+    apt-get update
 
 RUN apt-get install -y \
   php7.1 \
