@@ -5,8 +5,6 @@ MAINTAINER Omar Davila <omar@zinobe.com>
 
 ENV PUID=33
 ENV PGID=33
-ENV XDEBUG_PORT=9000
-ENV XDEBUG_HOST=localhost
 
 ENV WORKDIR=/home/dws
 
