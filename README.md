@@ -4,10 +4,10 @@
 ### ENV:
 
 * **PUID**
-User ID of owner of the directory to binding. Default ** *33* (www-data user)**
+User ID of owner of the directory to binding. Default ***33* (www-data user)**
 
 * **PGID**
-Group ID of owner of the directory to binding. Default ** *33* (www-data group)**
+Group ID of owner of the directory to binding. Default ***33* (www-data group)**
 
 * **WORKDIR**
 Docker workdir. Default: `/home/dws`
