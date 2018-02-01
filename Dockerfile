@@ -8,6 +8,8 @@ ENV PGID=33
 
 ENV WORKDIR=/home/dws
 
+VOLUME '/config'
+
 WORKDIR $WORKDIR
 
 # Install Nginx y PHP 7.1.
@@ -34,8 +36,12 @@ RUN apt-get install -y \
   php7.1-zip
 
 # Add config files
-ADD config/fpm-php.ini /etc/php/7.1/fpm/php.ini
-ADD config/fpm.conf /etc/php/7.1/fpm/pool.d/www.conf
+ADD ./config/fpm-php.ini /config/fpm-php.ini
+ADD ./config/fpm.conf /config/fpm.conf
+
+# Symbolic link config
+RUN ln -sf /config/fpm-php.ini /etc/php/7.1/fpm/php.ini
+RUN ln -sf /config/fpm.conf /etc/php/7.1/fpm/pool.d/www.conf
 
 ADD ./entrypoint.sh /usr/local/bin
 RUN chmod +x /usr/local/bin/entrypoint.sh
