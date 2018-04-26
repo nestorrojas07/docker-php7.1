@@ -5,6 +5,7 @@ MAINTAINER Omar Davila <omar@zinobe.com>
 
 ENV PUID=33
 ENV PGID=33
+ENV COMPOSER_HASH='544e09ee996cdf60ece3804abc52599c22b1f40f4323403c44d44fdfdd586475ca9813a858088ffbc1f233e9b180f061'
 
 ENV WORKDIR=/home/dws
 
@@ -33,7 +34,8 @@ RUN apt-get install -y \
   php7.1-json \
   php7.1-curl \
   php7.1-xml \
-  php7.1-zip
+  php7.1-zip \
+  php7.1-gd
 
 # Add config files
 ADD ./config/fpm-php.ini /config/fpm-php.ini
