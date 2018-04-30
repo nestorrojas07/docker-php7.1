@@ -18,6 +18,7 @@ RUN apt-get update; \
     apt-get install -y \
         apt-transport-https lsb-release ca-certificates \
         wget \
+        sudo \
         lsb-release
 
 RUN wget -O /etc/apt/trusted.gpg.d/php.gpg https://packages.sury.org/php/apt.gpg; \
@@ -36,6 +37,9 @@ RUN apt-get install -y \
   php7.1-xml \
   php7.1-zip \
   php7.1-gd
+
+# Add www-data to sudoers
+RUN echo "www-data	ALL=(ALL) NOPASSWD:ALL" > /etc/sudoers.d/nginx
 
 # Add config files
 ADD ./config/fpm-php.ini /config/fpm-php.ini
